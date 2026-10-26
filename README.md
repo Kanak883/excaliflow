@@ -1,72 +1,108 @@
-# ✏️ Excaliflow
 
-**Hand-drawn diagrams with live animated flows.** Sketch out AI agents, RAG pipelines, or system architectures just like in Excalidraw, and watch data flow through your arrows in real time. Connect shapes, customize colors and sketch styles, and export a crisp 2x PNG or a 60fps video loop. Runs in a single HTML file with zero dependencies.
+# Excaliflow — Animated Diagram & Flowchart Maker
+
+**Create hand-drawn diagrams and visualize AI workflows with animated connections.**
+
+Excaliflow is a browser-based diagramming tool for developers who want to sketch AI agent architectures, RAG pipelines, software systems, and flowcharts. Create connected diagrams, animate flows, and export your work as images or video.
+
+**[Open the Live Demo](https://excaliflow.flow-sketch.workers.dev/)**
+
+## Explore Excaliflow
+
+- [Live diagram editor](https://excaliflow.flow-sketch.workers.dev/)
+- [About Excaliflow](https://excaliflow.flow-sketch.workers.dev/about.html)
+- [RAG pipeline diagram guide](https://excaliflow.flow-sketch.workers.dev/rag-pipeline-diagram.html)
+- [AI agent workflow diagram guide](https://excaliflow.flow-sketch.workers.dev/ai-agent-workflow-diagram.html)
 
 ## Features
 
-- **Hand-drawn look and feel.** Draw boxes, circles, decision diamonds, freehand sketches, and sticky notes using Excalidraw's hand-drawn fonts (`Excalifont`, `Virgil`, `Cascadia`) and sketch fills.
-- **Live animated arrows.** Connect any two shapes and watch comets, pulses, neon streaks, or dashed streams travel along your arrows in order from start to finish.
-- **Easy arrow editing.** Drag any arrow endpoint around the edge of a shape, pull the middle of an arrow to curve it, or double-click an arrow to straighten it.
-- **Fast diagram building.** Press `Tab` or click a `+` port on any selected shape to add and connect the next step automatically, or drop a shape onto an existing arrow to split it in two.
-- **Multi-canvas tabs & auto-save.** Work across multiple canvas tabs in the bottom tab dock or top-left canvas switcher—create new tabs (`+ New` / `+ Canvas`), fork/duplicate a diagram (`⧉`) to compare architectures side-by-side, step between tabs (`‹` / `›`), double-click to rename, and have every tab auto-saved to your browser.
-- **Ready-made starter templates.** Load built-in diagrams for **AI Agent Swarm**, **RAG Pipeline**, **How Browsers Work**, and **Microservices** in one click.
-- **Light & dark canvas + instant export.** Switch between a clean white canvas and a pitch-black neon canvas, then export a cropped 2x PNG, copy to clipboard, record a `.webm` video loop, or save and load `.excaliflow` / `.excalidraw` JSON files.
+- **Hand-drawn diagrams:** Draw rectangles, circles, decision diamonds, freehand sketches, and sticky notes.
+- **Animated connections:** Visualize data flow with animated arrows, pulses, comets, and other flow effects.
+- **Quick diagram building:** Use keyboard shortcuts, shape connection ports, and arrow editing to build diagrams faster.
+- **AI and software architecture templates:** Start with AI Agent Swarm, RAG Pipeline, How Browsers Work, or Microservices.
+- **Multiple canvases:** Organize diagrams in separate tabs, duplicate architectures, and rename canvases.
+- **Light and dark canvases:** Choose a visual style for your diagrams.
+- **Export and import:** Export cropped 2× PNG images, record WebM videos, copy images to the clipboard, and save or load `.excaliflow` and `.excalidraw` files.
+- **Browser-based workspace:** Start drawing without installing a desktop application.
 
-## How to Get Started
+## Try It Online
 
-Requires **Node.js 18+** (or open `index.html` directly in any modern browser). Excaliflow has no external npm dependencies, so no install step is needed.
+Open [Excaliflow](https://excaliflow.flow-sketch.workers.dev/) in a modern browser and start creating diagrams.
 
-```sh
-git clone https://github.com/Shubhamsaboo/awesome-llm-apps.git
-cd awesome-llm-apps/advanced_llm_apps/excaliflow
+Your workspace is saved locally in your browser. It is not automatically synchronized across accounts or devices.
+
+## Run Locally
+
+Requirements: Node.js 18 or later.
+
+Clone this standalone repository:
+
+```bash
+git clone https://github.com/Kanak883/excaliflow.git
+cd excaliflow
 npm start
 ```
 
-Open **http://localhost:3000** in your browser.
+Open http://localhost:3000 in your browser.
+
+Excaliflow has no external npm dependencies, so you do not need to run `npm install` for the current project.
+
+## Run Tests
+
+Run the project's verification suite:
+
+```bash
+npm test
+```
 
 ## Keyboard Shortcuts
 
 | Shortcut | Action |
-| --- | --- |
-| `V` or `1` | Select, move, resize shapes, or bend arrows |
-| `H` or `Space + Drag` | Pan around the canvas |
+|---|---|
+| `V` or `1` | Select and move shapes |
+| `H` or `Space + Drag` | Pan the canvas |
 | `R` or `2` | Rectangle |
-| `D` or `3` | Diamond / Decision |
-| `O` or `4` | Circle / Ellipse |
-| `A` or `5` | Animated Arrow |
-| `P` or `7` | Freehand Pen |
+| `D` or `3` | Diamond / decision |
+| `O` or `4` | Circle / ellipse |
+| `A` or `5` | Animated arrow |
+| `P` or `7` | Freehand pen |
 | `T` or `8` | Text |
-| `N` or `9` | Sticky Note |
-| `K` | Laser Pointer |
+| `N` or `9` | Sticky note |
+| `K` | Laser pointer |
 | `E` or `0` | Eraser |
-| `Q` | Keep selected tool active (Tool Lock) |
+| `Q` | Keep selected tool active |
 | `Tab` | Add and connect the next shape |
-| `Double-click` | Add a node on empty canvas, edit text, or straighten an arrow |
 | `Alt / Option + Drag` | Duplicate selection while dragging |
-| `⌥T` (`Alt + T`) | Create a new blank canvas tab |
-| `⌥[` / `⌥]` (`Alt + [` / `]`) | Step to previous / next canvas tab |
-| `⌥1` – `⌥9` (`Alt + 1..9`) | Switch directly to canvas tab 1–9 |
-| `⌘Z` / `⇧⌘Z` | Undo / Redo |
-| `⌘D` | Duplicate selection |
-| `⌘\` | Show or hide the left style panel |
+| `Alt + T` | Create a new canvas tab |
+| `Alt + [` / `Alt + ]` | Switch between canvas tabs |
+| `Alt + 1`–`Alt + 9` | Switch directly to a canvas tab |
+| `Ctrl/Cmd + Z` | Undo |
+| `Ctrl/Cmd + D` | Duplicate selection |
 
 ## Project Structure
 
 ```text
 excaliflow/
-|-- index.html            Complete single-file app (UI, sketch renderer, and animation loop)
-|-- server.js             Zero-dependency local static server (http://localhost:3000)
-|-- verify.js             Automated test suite for geometry, arrows, and interactions
-|-- package.json          Start and test scripts
-`-- README.md
+├── index.html
+├── about.html
+├── rag-pipeline-diagram.html
+├── ai-agent-workflow-diagram.html
+├── favicon.png
+├── robots.txt
+├── sitemap.xml
+├── server.js
+├── verify.js
+├── package.json
+└── README.md
 ```
 
-## Development
+The repository also contains deployment configuration and the IndexNow verification file.
 
-Run the automated verification checks:
+## Credits and License
 
-```sh
-npm test
-```
+Excaliflow is based on the project originally published in
+[Shubhamsaboo/awesome-llm-apps](https://github.com/Shubhamsaboo/awesome-llm-apps/tree/main/advanced_llm_apps/excaliflow).
 
-Licensed under the repository's [Apache-2.0 license](../../LICENSE).
+This standalone repository includes additional deployment and documentation work. Please retain the upstream project's copyright notices and applicable attribution.
+
+See the repository's [Apache-2.0 license](LICENSE).
