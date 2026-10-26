@@ -1,0 +1,386 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>AI Agent Workflow Diagram: A Practical Guide | Excaliflow</title>
+
+  <meta name="description"
+    content="Learn how to design an AI agent workflow diagram. Visualize orchestrators, specialist agents, tool calls, evaluation loops, and multi-agent architectures with Excaliflow.">
+
+  <link rel="canonical"
+    href="https://excaliflow.flow-sketch.workers.dev/ai-agent-workflow-diagram.html">
+  <link rel="icon" type="image/png" sizes="96x96" href="/favicon.png">
+
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Excaliflow">
+  <meta property="og:title"
+    content="AI Agent Workflow Diagram: A Practical Guide">
+  <meta property="og:description"
+    content="Understand AI agent orchestration, tool calls, specialist agents, and evaluation loops with a visual workflow example.">
+  <meta property="og:url"
+    content="https://excaliflow.flow-sketch.workers.dev/ai-agent-workflow-diagram.html">
+
+  <style>
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: #f8f9fc;
+      color: #202124;
+      font-family: system-ui, -apple-system, sans-serif;
+      line-height: 1.75;
+    }
+
+    main {
+      width: min(820px, calc(100% - 36px));
+      margin: auto;
+      padding: 36px 0 64px;
+    }
+
+    a { color: #514bc8; }
+
+    .brand {
+      font-weight: 750;
+      text-decoration: none;
+    }
+
+    h1 {
+      font-size: clamp(2rem, 5vw, 3rem);
+      line-height: 1.17;
+      letter-spacing: -0.04em;
+      margin-top: 38px;
+    }
+
+    h2 {
+      margin-top: 40px;
+      line-height: 1.35;
+    }
+
+    h3 { line-height: 1.4; }
+
+    p, li { color: #424750; }
+
+    .intro { font-size: 1.15rem; }
+
+    .cta {
+      display: inline-block;
+      padding: 11px 18px;
+      margin: 14px 0 22px;
+      border-radius: 8px;
+      background: #5753d0;
+      color: white;
+      font-weight: 650;
+      text-decoration: none;
+    }
+
+    .panel {
+      background: white;
+      border: 1px solid #e0e3eb;
+      border-radius: 12px;
+      padding: 20px;
+      margin: 24px 0;
+    }
+
+    .label {
+      font-size: .8rem;
+      color: #626875;
+      font-weight: 750;
+      letter-spacing: .07em;
+      text-transform: uppercase;
+    }
+
+    .flow {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      margin: 16px 0;
+    }
+
+    .node {
+      flex: 1 1 125px;
+      min-width: 0;
+      padding: 12px;
+      text-align: center;
+      border: 1px solid #d8d7fa;
+      border-radius: 9px;
+      background: #f2f1ff;
+      color: #29265f;
+      font-weight: 650;
+      line-height: 1.4;
+    }
+
+    .node.green {
+      background: #e8f7ef;
+      border-color: #a4d9ba;
+      color: #205d3c;
+    }
+
+    .node.orange {
+      background: #fff2df;
+      border-color: #f0cf9c;
+      color: #774b10;
+    }
+
+    .arrow {
+      color: #7774bd;
+      font-weight: 800;
+    }
+
+    .note {
+      border-left: 3px solid #6965db;
+      padding-left: 14px;
+    }
+
+    li { margin: 10px 0; }
+
+    footer {
+      border-top: 1px solid #ddd;
+      margin-top: 48px;
+      padding-top: 20px;
+      font-size: .9rem;
+    }
+
+    a:focus-visible {
+      outline: 3px solid #5753d0;
+      outline-offset: 3px;
+    }
+
+    @media (max-width: 520px) {
+      .flow { gap: 6px; }
+      .node { flex-basis: 42%; font-size: .9rem; }
+      .arrow { font-size: .8rem; }
+      .panel { padding: 14px; }
+    }
+  </style>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "TechArticle",
+    "headline": "AI Agent Workflow Diagram: A Practical Guide",
+    "description": "Learn how to visualize AI agent orchestration, specialist agents, tool calls, and evaluation loops.",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://excaliflow.flow-sketch.workers.dev/ai-agent-workflow-diagram.html"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Excaliflow",
+      "url": "https://excaliflow.flow-sketch.workers.dev/"
+    }
+  }
+  </script>
+</head>
+
+<body>
+<main>
+  <a class="brand" href="/">Excaliflow</a>
+
+  <article>
+    <h1>How to Draw an AI Agent Workflow Diagram</h1>
+
+    <p class="intro">
+      An AI agent workflow diagram illustrates how an AI system
+      plans tasks, calls tools, coordinates specialist agents,
+      and checks results before producing an answer. It helps
+      developers reason about control flow, dependencies, and
+      failure points before implementing an agent.
+    </p>
+
+    <p>
+      Unlike a simple chatbot that responds to a prompt, an
+      AI agent system may perform several steps, use external
+      tools, maintain intermediate state, or delegate subtasks
+      to other agents. A diagram makes these interactions easier
+      to understand and communicate.
+    </p>
+
+    <a class="cta" href="/">Open the Excaliflow editor →</a>
+
+    <h2>1. Understand a typical AI agent workflow</h2>
+
+    <p>
+      Consider a research assistant that receives a question,
+      gathers information, reviews the evidence, and writes
+      a response. The following is an illustrative architecture,
+      not a requirement for every agent system.
+    </p>
+
+    <div class="panel">
+      <p class="label">Step A — Planning</p>
+
+      <div class="flow" aria-label="AI agent planning flow">
+        <div class="node">User goal</div>
+        <span class="arrow" aria-hidden="true">→</span>
+        <div class="node">Orchestrator / planner</div>
+        <span class="arrow" aria-hidden="true">→</span>
+        <div class="node">Task breakdown</div>
+      </div>
+
+      <p class="label">Step B — Execution</p>
+
+      <div class="flow" aria-label="Specialist agent execution">
+        <div class="node green">Research agent</div>
+        <div class="node green">Data analysis agent</div>
+        <div class="node green">Verification agent</div>
+      </div>
+
+      <p>
+        Each specialist receives a defined task. Depending on the
+        design, agents may work sequentially or in parallel and
+        may use tools such as search, databases, or APIs.
+      </p>
+
+      <div class="flow" aria-label="Agent outputs collected">
+        <div class="node">Tool results and evidence</div>
+        <span class="arrow" aria-hidden="true">→</span>
+        <div class="node">Combine outputs</div>
+        <span class="arrow" aria-hidden="true">→</span>
+        <div class="node orange">Evaluator / reviewer</div>
+      </div>
+
+      <div class="flow" aria-label="Final response">
+        <div class="node">Needs revision?</div>
+        <span class="arrow" aria-hidden="true">→</span>
+        <div class="node green">Final response</div>
+      </div>
+
+      <p class="note">
+        In a real workflow, the evaluator can send work back for
+        revision when the output fails quality checks. Draw a
+        feedback arrow to the orchestrator to make this loop
+        explicit. A simpler system may skip the review stage.
+      </p>
+    </div>
+
+    <h2>2. What components should the diagram include?</h2>
+
+    <h3>Orchestrator or planner</h3>
+    <p>
+      This component decides how the task is broken down, which
+      agent or tool handles each step, and how intermediate
+      results move through the workflow.
+    </p>
+
+    <h3>Specialist agents</h3>
+    <p>
+      Agents can have distinct responsibilities, such as research,
+      retrieval, analysis, or reviewing an answer. Use separate
+      nodes when responsibilities or execution paths differ.
+    </p>
+
+    <h3>Tools and external systems</h3>
+    <p>
+      Show tool calls explicitly when agents interact with search
+      services, APIs, databases, or other systems. Label the
+      information passed between components where it matters.
+    </p>
+
+    <h3>State and shared context</h3>
+    <p>
+      More complex workflows may pass task state, observations,
+      retrieved evidence, or intermediate outputs between steps.
+      Show these connections when they affect execution.
+    </p>
+
+    <h3>Evaluation and retry loops</h3>
+    <p>
+      Quality checks, retries, and human approval are important
+      when the system cannot safely accept every generated result.
+      Use decision nodes and feedback arrows to make these paths
+      clear.
+    </p>
+
+    <h2>3. How to draw the workflow with Excaliflow</h2>
+
+    <ol>
+      <li>
+        <a href="/">Open Excaliflow</a> in your browser.
+      </li>
+      <li>
+        Start with the AI Agent Swarm template if it is available
+        in your version, or create a new blank diagram.
+      </li>
+      <li>
+        Add nodes for the user request, orchestrator, specialist
+        agents, tools, evaluator, and final output.
+      </li>
+      <li>
+        Connect the nodes with arrows. Use different colors to
+        distinguish agent roles, external tools, and review steps.
+      </li>
+      <li>
+        Add feedback arrows for retries or revisions. Label
+        important handoffs so readers can follow the control flow.
+      </li>
+      <li>
+        Use Excaliflow's animated connections to illustrate the
+        sequence, then export a PNG image or WebM video for
+        documentation or presentations.
+      </li>
+    </ol>
+
+    <a class="cta" href="/">Try Excaliflow for free →</a>
+
+    <h2>4. Common mistakes when diagramming AI agents</h2>
+
+    <ul>
+      <li>
+        <strong>Hiding tool calls:</strong> Show external
+        dependencies instead of placing everything inside one agent.
+      </li>
+      <li>
+        <strong>Ignoring failure paths:</strong> Include retries,
+        timeouts, or human review when they exist in the design.
+      </li>
+      <li>
+        <strong>Mixing planning and execution:</strong> Distinguish
+        the component that assigns work from the components that do it.
+      </li>
+      <li>
+        <strong>Overcomplicating the diagram:</strong> Begin with
+        the main flow, then add details where they help explain
+        real dependencies.
+      </li>
+    </ul>
+
+    <h2>5. Frequently asked questions</h2>
+
+    <h3>What is an AI agent workflow diagram?</h3>
+    <p>
+      It is a visual representation of the steps, components,
+      tool calls, and decisions that make up an AI agent system.
+      It can describe a single agent or a multi-agent architecture.
+    </p>
+
+    <h3>What is the difference between an AI agent and a workflow?</h3>
+    <p>
+      An agent is a component that uses a model and its available
+      tools to pursue a task. A workflow describes how components
+      and steps are coordinated to complete a larger task.
+    </p>
+
+    <h3>Does Excaliflow execute AI agents?</h3>
+    <p>
+      No. Excaliflow is a visual diagramming tool, not an agent
+      runtime. You can use it to plan and explain an architecture,
+      animate connections, and export your diagram, but the
+      underlying agent system must run separately.
+    </p>
+  </article>
+
+  <footer>
+    <a href="/">Open Excaliflow</a>
+    ·
+    <a href="/about.html">About Excaliflow</a>
+    ·
+    <a href="/rag-pipeline-diagram.html">RAG pipeline diagram guide</a>
+  </footer>
+</main>
+</body>
+</html>

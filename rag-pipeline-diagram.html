@@ -1,0 +1,325 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>RAG Pipeline Diagram: Visualize a RAG Workflow | Excaliflow</title>
+
+  <meta name="description" content="Learn how a RAG pipeline works and how to diagram document indexing, vector search, reranking, and LLM generation. Visualize a RAG workflow with Excaliflow.">
+
+  <link rel="canonical"
+        href="https://excaliflow.flow-sketch.workers.dev/rag-pipeline-diagram.html">
+
+  <style>
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: #f8f9fc;
+      color: #202124;
+      font-family: system-ui, -apple-system, sans-serif;
+      line-height: 1.75;
+    }
+
+    main {
+      width: min(820px, calc(100% - 36px));
+      margin: auto;
+      padding: 36px 0 64px;
+    }
+
+    a { color: #514bc8; }
+
+    .brand {
+      font-weight: 750;
+      text-decoration: none;
+    }
+
+    h1 {
+      font-size: clamp(2rem, 5vw, 3rem);
+      line-height: 1.17;
+      letter-spacing: -0.04em;
+      margin-top: 38px;
+    }
+
+    h2 {
+      margin-top: 40px;
+      line-height: 1.3;
+    }
+
+    p, li { color: #424750; }
+
+    .intro {
+      font-size: 1.15rem;
+    }
+
+    .cta {
+      display: inline-block;
+      padding: 11px 18px;
+      margin: 14px 0 22px;
+      border-radius: 8px;
+      background: #5753d0;
+      color: white;
+      font-weight: 650;
+      text-decoration: none;
+    }
+
+    .panel {
+      background: white;
+      border: 1px solid #e0e3eb;
+      border-radius: 12px;
+      padding: 20px;
+      margin: 24px 0;
+    }
+
+    .flow {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 9px;
+      margin: 16px 0;
+    }
+
+    .node {
+      flex: 1 1 125px;
+      min-width: 0;
+      padding: 12px;
+      text-align: center;
+      border: 1px solid #d8d7fa;
+      border-radius: 8px;
+      background: #f2f1ff;
+      color: #29265f;
+      font-weight: 600;
+      line-height: 1.4;
+    }
+
+    .arrow {
+      color: #7774bd;
+      font-weight: 800;
+    }
+
+    .label {
+      font-size: .8rem;
+      color: #626875;
+      font-weight: 750;
+      letter-spacing: .07em;
+      text-transform: uppercase;
+    }
+
+    .note {
+      border-left: 3px solid #6965db;
+      padding-left: 14px;
+    }
+
+    li { margin: 10px 0; }
+
+    footer {
+      border-top: 1px solid #ddd;
+      margin-top: 48px;
+      padding-top: 20px;
+      font-size: .9rem;
+    }
+
+    a:focus-visible {
+      outline: 3px solid #5753d0;
+      outline-offset: 3px;
+    }
+
+    @media (max-width: 520px) {
+      .flow { gap: 6px; }
+      .node { flex-basis: 42%; font-size: .9rem; }
+      .arrow { font-size: .8rem; }
+      .panel { padding: 14px; }
+    }
+  </style>
+</head>
+
+<body>
+<main>
+  <a class="brand" href="/">Excaliflow</a>
+
+  <article>
+    <h1>How to Draw a RAG Pipeline Diagram</h1>
+
+    <p class="intro">
+      A RAG pipeline diagram shows how an AI application retrieves
+      information from external documents and supplies relevant
+      context to a large language model (LLM). Visualizing the
+      workflow helps developers understand data movement, identify
+      missing steps, and explain the architecture to others.
+    </p>
+
+    <p>
+      RAG stands for retrieval-augmented generation. A typical system
+      has two connected parts: an indexing pipeline that prepares
+      documents, and a query pipeline that retrieves information
+      when someone asks a question.
+    </p>
+
+    <a class="cta" href="/">
+      Open the Excaliflow diagram editor →
+    </a>
+
+    <section>
+      <h2>1. Understand the two parts of a RAG architecture</h2>
+
+      <div class="panel">
+        <p class="label">Offline: document indexing</p>
+
+        <div class="flow" aria-label="Document indexing flow">
+          <div class="node">Source documents</div>
+          <span class="arrow" aria-hidden="true">→</span>
+          <div class="node">Parse and split into chunks</div>
+          <span class="arrow" aria-hidden="true">→</span>
+          <div class="node">Generate embeddings</div>
+          <span class="arrow" aria-hidden="true">→</span>
+          <div class="node">Vector index</div>
+        </div>
+
+        <p>
+          The indexing stage transforms documents into searchable
+          chunks and stores their vector representations. This stage
+          normally runs before a user submits a query.
+        </p>
+      </div>
+
+      <div class="panel">
+        <p class="label">Online: query and answer</p>
+
+        <div class="flow" aria-label="RAG query flow">
+          <div class="node">User question</div>
+          <span class="arrow" aria-hidden="true">→</span>
+          <div class="node">Query embedding</div>
+          <span class="arrow" aria-hidden="true">→</span>
+          <div class="node">Retrieve relevant chunks</div>
+        </div>
+
+        <div class="flow" aria-label="RAG answer flow">
+          <div class="node">Optional reranking</div>
+          <span class="arrow" aria-hidden="true">→</span>
+          <div class="node">Build context</div>
+          <span class="arrow" aria-hidden="true">→</span>
+          <div class="node">LLM generates an answer</div>
+        </div>
+
+        <p>
+          The retrieval stage searches the index created earlier.
+          Relevant passages are assembled into context for the
+          language model, which generates the response. A production
+          system may also validate the answer and include source
+          references.
+        </p>
+      </div>
+
+      <p class="note">
+        Important: the document and query embedding models must be
+        compatible. A diagram should also show the connection between
+        the stored vector index and the retrieval step.
+      </p>
+    </section>
+
+    <section>
+      <h2>2. Create a RAG pipeline diagram with Excaliflow</h2>
+
+      <ol>
+        <li>
+          <a href="/">Open Excaliflow</a> in your browser.
+        </li>
+        <li>
+          Open the <strong>Templates</strong> menu and select
+          <strong>RAG Pipeline</strong>. The starter diagram illustrates
+          a simplified query-time retrieval workflow.
+        </li>
+        <li>
+          Add shapes for document sources, parsing, chunking,
+          embeddings, and the vector index to represent the
+          offline indexing stage.
+        </li>
+        <li>
+          Use arrows to connect the steps. Arrange the indexing
+          and query stages separately to make their relationship
+          easier to understand.
+        </li>
+        <li>
+          Customize shapes, colors, text, and arrow styles.
+          Use Excaliflow's flow animation to illustrate how
+          information moves through the connections.
+        </li>
+        <li>
+          Export your diagram as a PNG image or a WebM video
+          to use in technical documentation, tutorials, or
+          architecture presentations.
+        </li>
+      </ol>
+
+      <a class="cta" href="/">Try Excaliflow for free →</a>
+    </section>
+
+    <section>
+      <h2>3. What should a good RAG pipeline diagram include?</h2>
+
+      <p>
+        A useful diagram should distinguish document preparation
+        from request-time retrieval. Include the source of the
+        documents, the chunking and embedding stages, the vector
+        index, retrieval, optional reranking, context construction,
+        and answer generation.
+      </p>
+
+      <p>
+        Add labels where the data changes form—for example,
+        document chunks, embeddings, retrieved passages, and
+        the final prompt context. For more complex systems, show
+        access-control checks, citations, evaluation, and error
+        handling when they apply.
+      </p>
+
+      <p>
+        Not every RAG application uses the same architecture.
+        Treat this diagram as a starting point and adapt it to
+        the actual system you are designing.
+      </p>
+    </section>
+
+    <section>
+      <h2>Frequently asked questions</h2>
+
+      <h3>What is a RAG pipeline diagram?</h3>
+      <p>
+        It is a visual representation of the indexing and retrieval
+        steps used by a retrieval-augmented generation application.
+        It shows how external information reaches an LLM to help
+        generate a context-informed answer.
+      </p>
+
+      <h3>Can I draw a RAG pipeline without coding?</h3>
+      <p>
+        Yes. A diagram editor lets you represent components and
+        connections visually. Excaliflow is for drawing and
+        explaining architecture; it does not execute or deploy
+        the RAG application itself.
+      </p>
+
+      <h3>Can I animate a RAG pipeline diagram?</h3>
+      <p>
+        Excaliflow provides animated flow effects along diagram
+        connections. You can also export a diagram as a WebM video.
+        The animation illustrates the workflow; it does not represent
+        live execution or actual data from a running RAG system.
+      </p>
+    </section>
+  </article>
+
+  <footer>
+    <a href="/">Open Excaliflow</a>
+    ·
+    <a href="/about.html">About Excaliflow</a>
+    .
+    <a href="/ai-agent-workflow-diagram.html">
+  Learn how to draw an AI agent workflow diagram
+</a>
+  </footer>
+</main>
+</body>
+</html>
